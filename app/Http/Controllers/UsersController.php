@@ -53,8 +53,9 @@ class UsersController extends Controller
         
         $request->validate([
             'email' => 'unique:users' ,
-            'password' => 'required|string|min:8|same:password_confirmation'
-        ]);
+            'password' => 'required|string|min:8|same:password_confirmation',
+            'username' => 'required|unique:users',
+         ]);
 
         $user = new User;
         $user->username = $request->input('username');

@@ -24,7 +24,13 @@ class ExpendituresController extends Controller
     public function expitem($id){
        
         $items = Expenditure::find($id)->exp_items;
-        return view('pages.expitem')->with('donations',$items)->with('exp_id',$id); 
+        return view('pages.expitem')->with('items',$items)->with('exp_id',$id); 
     }
 
+
+    // City Admin
+    public function city_expenditures(){
+        $exp = Expenditure::orderBy('date_purchased','DESC')->paginate(10);
+        return view('pages.city-admin.expenditures')->with('expenditures',$exp);
+    }
 }

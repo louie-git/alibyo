@@ -20,7 +20,7 @@ class SuperAdmin
             return $next($request);
             
         }
-        if(Auth::user() && \Auth::user()->acc_position == 'Admin' or 'User')
+        if(Auth::user() && \Auth::user()->acc_position !='Super_Admin')
         {
             if(auth()->user()){
                 return abort(403);

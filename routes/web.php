@@ -17,7 +17,13 @@ use App\Mail\WelcomMail;
 //     Mail::to('vlarrabis@gmail.com')->send(new WelcomMail());
 //     return new WelcomMail();
 // });
+Route::get('/distributor','DistributorsController@index');
+Route::post('/register_distributor','DistributorsController@register');
 
+
+
+
+Route::get('/barangay_expenditures','ExpendituresController@city_expenditures');
 Route::get('/donation_recieved','DonorsController@donation_city');
 Route::get('/donation_recieved/{id}','DonorsController@donation_recieve');
 Route::get('/relief_information','ReliefsController@city_relief');

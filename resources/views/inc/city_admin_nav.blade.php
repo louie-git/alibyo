@@ -54,7 +54,7 @@
     </div>
 </nav> --}}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/dashboard">Alibyo</a>
+    <a class="navbar-brand" href="/donation_recieved">Alibyo</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -65,10 +65,13 @@
           <a class="nav-link" href="/donation_recieved">Donations<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item a">
-          <a class="nav-link" href="#">Residents<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#">Residents<span class="sr-only"></span></a>
         </li>
         <li class="nav-item a">
-          <a class="nav-link" href="/relief_information">Reliefs<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/relief_information">Reliefs<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item a">
+          <a class="nav-link" href="/barangay_expenditures">Expenditures<span class="sr-only"></span></a>
         </li>
       </ul> 
       <ul class="navbar-nav ml-auto">

@@ -40,28 +40,38 @@ input[type=number]::-webkit-outer-spin-button {
                 
                 <div class="restable">
                     <div class="responsive-table-lg">
-                        @if (1>0)
                         <table class="table text-center table-sm" >
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Quantity</th>
-                                    <th>Unit By</th>
+                                    <th>Units</th>
                                     <th>item Name</th>
                                 </tr>
                             </thead>
-                            <tbody>     
+                            <tbody> 
+                              @if (count($items)>0)
+                                @foreach ($items as $item)
+                                <tr>
+                                <td>{{$item->item_quantity}}</td>
+                                <td>{{$item->item_unit}}</td>
+                                <td>{{$item->item_name}}</td>
+                                </tr>
+                                @endforeach
+                              @else
+                              <h5>No Items recorded!</h5>
+                              @endif 
                             </tbody>
                         </table>
-                        @else
-                            <h5>No Items recorded!</h5>
-                        @endif                   
+                                          
                     </div>
                    
                 </div>
                 <div>
+                  <a href="/expenditures" class="btn btn-danger">Return</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#additemmodal">
                         Add Item
                       </button>
+                    
                 </div>
             </div>
         </div>

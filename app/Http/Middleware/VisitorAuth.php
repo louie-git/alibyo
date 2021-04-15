@@ -20,13 +20,10 @@ class VisitorAuth
             return $next($request);
             
         }
-        if(Auth::user() && \Auth::user()->acc_position =='Super_Admin' or 'Admin')
+        if(Auth::user() && \Auth::user()->acc_position !='User' )
         {
-            if(auth()->user()){
+            
                 return abort(403);
-            }else{
-                return redirect('/signin');
-            }
         }
         else
         {

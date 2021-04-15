@@ -110,9 +110,9 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                    <input id="name" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
     
-                                    @error('name')
+                                    @error('username')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -153,7 +153,7 @@
                         </form>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <a href="/signin"><input type="submit" name="" id="" value="Signin" class="btn btn-danger"></a>
+                                <a href="/signin" class="btn btn-danger">Signin</a>
                             </div>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
         margin-top:30px;
     }
 </style>
-@extends('layout.cityadmin');
+@extends('layout.cityadmin')
 
 @section('content')
 <div class="container-fluid">

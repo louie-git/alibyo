@@ -80,7 +80,7 @@
                 <li><a class="dropdown-item" href="/smsSender"><i class="far fa-envelope"></i>Send SMS</a></li>
                 <li><a class="dropdown-item" href="/list_of_receivers"><i class="fas fa-list"></i>Names to receive</a></li>
                 <li><a class="dropdown-item" href="/distributedRelief"><i class="fas fa-user-check"></i>Distributed Relief</a></li>
-
+                <li><a class="dropdown-item" href="/distributor"><i class="far fa-handshake"></i>Distributor</a></li>
                 
             </ul>
             
