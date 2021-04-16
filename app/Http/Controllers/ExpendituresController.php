@@ -28,6 +28,16 @@ class ExpendituresController extends Controller
     }
 
 
+
+
+    //User
+    public function expenses(){
+        $exp = Expenditure::orderBy('date_purchased','DESC')->paginate(10);
+        return view('pages.brgyExpenditure')->with('expenditures',$exp);
+    }
+
+
+
     // City Admin
     public function city_expenditures(){
         $exp = Expenditure::orderBy('date_purchased','DESC')->paginate(10);

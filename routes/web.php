@@ -17,8 +17,12 @@ use App\Mail\WelcomMail;
 //     Mail::to('vlarrabis@gmail.com')->send(new WelcomMail());
 //     return new WelcomMail();
 // });
-Route::get('/distributor','DistributorsController@index');
-Route::post('/register_distributor','DistributorsController@register');
+Route::put('/reset_distributor_password','DistributorsController@reset')->middleware('admin');
+Route::put('/search_result', 'DistributorsController@search')->middleware('admin');
+Route::put('/update_status','DistributorsController@update_status')->middleware('admin');
+Route::put('/edit_distributor','DistributorsController@editinfo')->middleware('admin');
+Route::get('/distributor','DistributorsController@index')->middleware('admin');
+Route::post('/register_distributor','DistributorsController@register')->middleware('admin');
 
 
 
@@ -28,15 +32,26 @@ Route::get('/donation_recieved','DonorsController@donation_city');
 Route::get('/donation_recieved/{id}','DonorsController@donation_recieve');
 Route::get('/relief_information','ReliefsController@city_relief');
 
+
+
 Route::get('/super_admin','UsersController@admin_account')->middleware('superadmin');
-Route::put('/update_admin_account','UsersController@update_account');
+Route::put('/update_admin_account','UsersController@update_account')->middleware('superadmin');
 Route::post('/send_email','Auth\ForgotPasswordController@password');
+
+
 
 Route::get('/reset_password','PagesController@reset_password');
 Route::get('/admin/registration','PagesController@admin_reg');
 Route::post('/verify','UsersController@create_admin')->name('admin_reg');
 
+
+
+
+
+
 Route::get('/','PagesController@index')->name('signin');
+
+Route::get('/expenses','ExpendituresController@expenses');
 Route::get('/brgyPage','DonorsController@donationsDisp')->middleware('visitor');
 Route::get('/givendonation/{id}','DonorsController@givendonation')->middleware('visitor');
 Route::get('/edit_account','PagesController@editaccount')->middleware('visitor')->name('editaccount');

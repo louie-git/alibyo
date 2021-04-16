@@ -75,7 +75,10 @@
             </ul>
         </li>
         <li class="nav-item a">
-          <a class="nav-link" href="/reciever_list">Recievers<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/reciever_list">Recievers<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item a">
+          <a class="nav-link" href="/expenses">Expenditures<span class="sr-only"></span></a>
         </li>
       </ul> 
       <ul class="navbar-nav ml-auto">

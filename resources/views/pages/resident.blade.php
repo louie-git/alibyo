@@ -412,7 +412,7 @@ use Carbon\Carbon;
                 </select>
             </div>
             <div class="form-group">
-              <label for="age">Age</label>
+              <label for="age">Birth Date</label>
               <input type="date" class="form-control" id="age" name="dob" onkeyup="agecalc(this)" min="1900-01-01" max="2999-01-01" required>
               
               
@@ -643,10 +643,7 @@ use Carbon\Carbon;
       $('#family_num').val(data[9]);
       $('#barangay').val(data[11]);
       $('#qrstatus').val(data[12]);
-
     });
-    
-
     $('#editform').on('submit',function(e) {
       e.preventDefault();
       var id = $('#id').val();
