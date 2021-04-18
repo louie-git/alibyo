@@ -102,17 +102,23 @@ class ReliefsController extends Controller
     {
         //
     }
+
+
+    
     public function softdelete(Request $request){
-       
+       $del = Relief::find($request->get('id'));
+       $del->delete();
+       return back()->with('success','Relief Successfully Deleted');
+    }
+
+
+    public function complete(Request $request){
         $id = $request->get('completeid');
         $relief = Relief::find($id);
         $relief->relief_status = $request->input('status');
         $relief->save();
         return redirect('/relief')->with('alert','Data Moved to Completed Relief');
     }
-
-
-
 
     // User
     public function completed(){

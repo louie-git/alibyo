@@ -3,9 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Expenditure extends Model
 {
+    use SoftDeletes;
     protected $table = 'expenditures';
     public $primaryKey = 'exp_id';
     public $timestamps = false;

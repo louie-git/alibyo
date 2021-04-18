@@ -18,6 +18,7 @@ class CreateExpendituresTable extends Migration
             $table->string('exp_used_amount');
             $table->string('purchased_by');
             $table->date('date_purchased');
+            $table->softDeletes();
         });
     }
 

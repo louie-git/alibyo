@@ -22,6 +22,7 @@
     .logout{
         padding-left: 30px;
     }
+
 </style>
 {{--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Alibyo</a>
@@ -53,7 +54,7 @@
     </div>
 </nav> --}}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/dashboard">Navbar</a>
+    <a class="navbar-brand" href="/dashboard"><img src="/img/logo-crop.png" class="logo" style="width:30px;height:30px;background:white;">&nbsp;&nbsp;Alibyo</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -62,9 +63,6 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,6 +79,7 @@
                 <li><a class="dropdown-item" href="/list_of_receivers"><i class="fas fa-list"></i>Names to receive</a></li>
                 <li><a class="dropdown-item" href="/distributedRelief"><i class="fas fa-user-check"></i>Distributed Relief</a></li>
                 <li><a class="dropdown-item" href="/distributor"><i class="far fa-handshake"></i>Distributor</a></li>
+                <li><a class="dropdown-item" href="/trashed"><i class="far fa-trash-alt"></i>Trashed</a></li>
                 
             </ul>
             

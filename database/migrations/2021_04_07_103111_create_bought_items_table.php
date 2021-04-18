@@ -20,6 +20,7 @@ class CreateBoughtItemsTable extends Migration
             $table->string('item_unit');
             $table->unsignedBigInteger('exp_id');
             $table->foreign('exp_id')->nullable()->references('exp_id')->on('expenditures')->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 

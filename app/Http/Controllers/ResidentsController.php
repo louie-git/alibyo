@@ -273,6 +273,8 @@ class ResidentsController extends Controller
     public function softdelete(Request $request){
         $id = $request->get('deleteid');
         $resident = Resident::find($id);
+        $resident->res_qrcode_status = 'Disabled';
+        $resident->save();
         $resident->delete();
     }
     public function recipients(){

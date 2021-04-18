@@ -73,6 +73,9 @@
         <li class="nav-item a">
           <a class="nav-link" href="/barangay_expenditures">Expenditures<span class="sr-only"></span></a>
         </li>
+        <li class="nav-item a">
+          <a class="nav-link" href="/barangay_trashed">Trashed<span class="sr-only"></span></a>
+        </li>
       </ul> 
       <ul class="navbar-nav ml-auto">
         <!-- Authentication Links -->
@@ -97,7 +100,7 @@
                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
-                    <a class="dropdown-item" href="{{ route('editaccount') }}">
+                    <a class="dropdown-item" href="{{ url('/update_information') }}">
                         {{ __('Edit Profile') }}
                     </a>
                     

@@ -43,16 +43,23 @@
                                     <th>Purchased By</th>
                                     <th>Date Purchased</th>
                                     <th>Purchased item</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($expenditures as $item)
                                     <tr>
+                                        <td style="display: none;">{{$item->exp_id}}</td>
                                         <td>{{$item->exp_used_amount}}</td>
                                         <td>{{$item->purchased_by}}</td>
                                         <td>{{$item->date_purchased}}</td>
                                         <td>
                                             <a href="/expenditure_item/{{$item->exp_id}}" class="btn btn-sm btn-outline-primary">view</a>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-sm deletebtn" data-toggle="modal" data-target="#deletemodal">
+                                                delete
+                                              </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -77,12 +84,39 @@
      </div>
 </div>
 
+{{-- delete modal --}}
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Expenditure</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{url('/delete_expenditure')}}" method="POST">
+            {{ csrf_field() }}
+            {{method_field('PUT')}}
+            <div class="modal-body">
+            <input type="hidden" name="id" id="delid">
+                <label>Amount Used</label>
+                <input type="text"  id="delname" class="form-control">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Confirm</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Register new Expenses</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Register Amount Used</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -105,9 +139,28 @@
         </form>
       </div>
     </div>
-  </div>
-  <script>
+</div>
+
+
+
+<script>
+    $(document).ready(function() {
+    $('.deletebtn').on('click',function() {
+    $tr = $(this).closest('tr');
+    var data = $tr.children('td').map(function (){
+        return $(this).text();
+  
+    }).get();
+    console.log(data);
+    $('#delid').val(data[0]);
+    $('#delname').val(data[1]);
+    });      
+  });
+</script> 
+
+
+<script>    
     //   document.getElementById('dp').value = moment().format('YYYY-MM-DD')
     document.getElementById('dp').valueAsDate = new Date();
-  </script>
+</script>
 @endsection

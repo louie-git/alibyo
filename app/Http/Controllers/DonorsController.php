@@ -159,7 +159,7 @@ class DonorsController extends Controller
 
 
     public function donation_city(){
-        $donations = Donor::withTrashed()->get();
+        $donations = Donor::all();
         return view('pages.city-admin.city_admin')->with('donations',$donations);
 
     }
@@ -170,5 +170,13 @@ class DonorsController extends Controller
         $pendonations = Donor::find($id)->mydonor->where('donation_status','PENDING');
         $deldonation = Donor::find($id)->mydonor_del;
         return view('pages.city-admin.donation_recieve')->with('compdonations',$compdonations)->with('pendonations',$pendonations)->with('deldonations',$deldonation);
+    }
+
+
+
+    public function softdelete(Request $request){
+        $del = Donor::find($request->get('id'));
+        $del->delete();
+        return back()->with('success','Donor Successfully deleted');
     }
 }

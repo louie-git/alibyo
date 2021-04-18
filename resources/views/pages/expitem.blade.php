@@ -41,28 +41,35 @@ input[type=number]::-webkit-outer-spin-button {
                 <div class="restable">
                     <div class="responsive-table-lg">
                         <table class="table text-center table-sm" >
+                          @if (count($items)>0)
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Quantity</th>
                                     <th>Units</th>
                                     <th>item Name</th>
+                                    <th> </th>
                                 </tr>
                             </thead>
                             <tbody> 
-                              @if (count($items)>0)
                                 @foreach ($items as $item)
                                 <tr>
-                                <td>{{$item->item_quantity}}</td>
-                                <td>{{$item->item_unit}}</td>
-                                <td>{{$item->item_name}}</td>
+                                  <td style="display: none">{{$item->item_id}}</td>
+                                  <td>{{$item->item_quantity}}</td>
+                                  <td>{{$item->item_unit}}</td>
+                                  <td>{{$item->item_name}}</td>
+                                  <td>
+                                    <button type="button" class="btn btn-danger btn-sm deletebtn" data-toggle="modal" data-target="#deletemodal">
+                                      Delete
+                                    </button>
+                                  </td>
                                 </tr>
                                 @endforeach
-                              @else
-                              <h5>No Items recorded!</h5>
-                              @endif 
                             </tbody>
+                            @else
+                            <h5>No Items recorded!</h5>
+                            @endif 
                         </table>
-                                          
+                    </div>               
                     </div>
                    
                 </div>
@@ -77,6 +84,37 @@ input[type=number]::-webkit-outer-spin-button {
         </div>
      </div>
 </div>
+
+
+{{-- Delete Modal --}}
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/delete_exp_item" method="POST">
+        {{ csrf_field() }}
+        {{method_field('PUT')}}
+        <div class="modal-body">
+          <input type="hidden" name="id"  id="delid">
+          
+          <p style="display: inline" id="qty"></p>
+          <p style="display: inline" id="unit"></p>
+          <p style="display: inline" id="name"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Confirm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="additemmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -119,7 +157,23 @@ input[type=number]::-webkit-outer-spin-button {
         </form>
       </div>
     </div>
-  </div>
+</div>
 
 
+<script>
+    $(document).ready(function() {
+    $('.deletebtn').on('click',function() {
+    $tr = $(this).closest('tr');
+    var data = $tr.children('td').map(function (){
+        return $(this).text();
+    }).get();
+    console.log(data);
+    $('#delid').val(data[0]);
+    document.getElementById('qty').innerHTML = data[1];
+    document.getElementById('unit').innerHTML = data[2];
+    document.getElementById('name').innerHTML = data[3];
+    });    
+    
+  });
+</script> 
 @endsection

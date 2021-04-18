@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'visitor' => \App\Http\Middleware\VisitorAuth::class,
         'admin' => \App\Http\Middleware\AdminAuth::class,
         'superadmin' => \App\Http\Middleware\SuperAdmin::class,
+        'cityadmin' => \App\Http\Middleware\CityAdmin::class,
         
     ];
 

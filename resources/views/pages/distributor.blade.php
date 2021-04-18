@@ -52,6 +52,7 @@
                             <th>Status</th>
                             <th>Edit</th>
                             <th>Reset Password</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -108,9 +109,14 @@
                                       </button>
                                   </td>
                                   <td>
-                                    <button type="button" class="btn btn-danger btn-sm reset" data-toggle="modal" data-target="#reset">
+                                    <button type="button" class="btn btn-info btn-sm reset" data-toggle="modal" data-target="#reset">
                                         Reset
                                       </button>
+                                  </td>
+                                  <td>
+                                    <button type="button" class="btn btn-danger btn-sm deletebtn" data-toggle="modal" data-target="#deletedist">
+                                        delete
+                                    </button>
                                   </td>
                               </tr>       
                         @endforeach
@@ -157,7 +163,7 @@
                 </form>
             </div>
         </div>
-      </div>
+    </div>
   
   
     {{-- Edit Modal --}}
@@ -203,7 +209,38 @@
         </div>
     </div>
 
-
+{{-- delete modal --}}
+<div class="modal fade" id="deletedist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{url('/delete_distributor')}}" method="POST">
+            {{ csrf_field() }}
+            {{method_field('PUT')}}
+        <div class="modal-body">
+            
+                <input type="hidden" name="id" id="dist_id">
+                <label>Last Name</label>
+                <input type="text" id="l_name" class="form-control" readonly>
+                <label>First Name</label>
+                <input type="text" id="f_name" class="form-control" readonly>
+                <label>Middle Name</label>
+                <input type="text" id="m_name" class="form-control" readonly>
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
     <!-- Modal -->
@@ -290,6 +327,22 @@
 
 <script>
     $(document).ready(function() {
+        $('.deletebtn').on('click',function() {
+        $tr = $(this).closest('tr');
+        var data = $tr.children('td').map(function (){
+          return $(this).text();
+        }).get();
+        console.log(data);
+        $('#dist_id').val(data[0]);
+        $('#l_name').val(data[1]);
+        $('#f_name').val(data[2]);
+        $('#m_name').val(data[3]);
+      });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
         $('.reset').on('click',function() {
         $tr = $(this).closest('tr');
         var data = $tr.children('td').map(function (){
@@ -303,7 +356,7 @@
         document.getElementById('rmname').innerHTML = data[3];
       });
     });
-  </script>
+</script>
 
 @endsection
 

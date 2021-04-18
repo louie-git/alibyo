@@ -16,4 +16,10 @@ class BoughtItemsController extends Controller
         $items->save();
         return redirect()->to('expenditure_item/'.$id)->with('success',"Item Added: ".$request->get('item_name'));  
     }
+
+    public function softdelete(Request $request){
+        $del = Bought_Item::find($request->get('id'));
+        $del->delete();
+        return back()->with('success','Item Deleted Successfully');
+    }
 }

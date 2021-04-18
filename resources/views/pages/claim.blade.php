@@ -1,13 +1,15 @@
 <style>
     .list-of-res{
-        margin-top: 50px;
+        margin-top: 20px;
     }
 </style>
 @extends('layout.app')
 
 @section('content')
-    
     <div class="container">
+        <div>
+            <h2>List of Reciever</h2>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="list-of-res">

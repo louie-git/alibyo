@@ -131,19 +131,19 @@ use Carbon\Carbon;
 
 
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown button
+        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Menu
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#residentaddmodal" >
+          <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#residentaddmodal" >
             Register Resident
           </button>
         
-          <button type="button" class="btn btn-primary purokupdate" data-toggle="modal" data-target="#updatepurokqr" >
+          <button type="button" class="btn btn-outline-info btn-sm purokupdate" data-toggle="modal" data-target="#updatepurokqr" >
             Purok Update QR
           </button>
         
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Update All QR
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

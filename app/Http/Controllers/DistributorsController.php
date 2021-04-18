@@ -63,4 +63,12 @@ class DistributorsController extends Controller
         $dist->save();
         return back()->with('success','Password of '.$dist->last_name.', '.$dist->first_name.' '.$dist->middle_name.' reset successfully!');
     }
+
+    public function softdelete(Request $request){
+        $del = Distributor::find($request->get('id'));
+        $del->delete();
+        return back()->with('success','Distributor Successfully Deleted');
+    }
+
+
 }

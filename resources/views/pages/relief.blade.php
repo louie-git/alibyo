@@ -20,6 +20,17 @@
 @extends('layout.app')
 
 @section('content')
+@foreach ($errors->all() as $item)
+    <div class="alert alert-danger" role="alert">
+      {{$item}}
+    </div>
+@endforeach
+
+@if (session('success'))
+  <div class="alert alert-success" role="alert">
+    {{session('success')}}
+  </div>
+@endif
 <div class="wrapper" >
     <h1>Relief List</h1>
     
@@ -39,11 +50,13 @@
                         <th scope="col">Remarks</th>
                         <th scope="col">Date Prepared</th>
                         <th> </th>
+                        <th> </th>
                     </tr>
                 </thead>         
                 <tbody> 
                     @foreach ($reliefs as $relief)  
                     <tr>
+                        <td style="display: none">{{$relief->relief_id}}</td>
                         <td>{{$relief->relief_name}}</td>
                         <td>{{$relief->relief_description}}</td>
                         <td>{{$relief->relief_quantity}}</td>
@@ -78,6 +91,11 @@
                             Complete
                           </button>
                         </td>
+                        <td>
+                          <button type="button" class="btn btn-danger btn-sm deletebtn" data-toggle="modal" data-target="#deletemodal">
+                              Delete
+                          </button>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -93,6 +111,32 @@
       </button>
 </div>
 
+{{-- delete modal --}}
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">This Relief will be Deleted</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{url('/delete_relief')}}" method="POST">
+        {{ csrf_field() }}
+        {{method_field('PUT')}}
+        <div class="modal-body">
+          <input type="hidden" name="id" id="delid">
+          <label>Relief Name</label>
+            <input type="text" id="delname" class="form-control">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Confirm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 {{-- Completed relief Modal --}}
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -106,7 +150,7 @@
       </div>
       <div class="modal-body">
         <h5>Relief will be moved to Distributed Relief</h5>
-        <form action="{{route('reliefdelete')}}" method="POST">
+        <form action="{{url('/relief_complete')}}" method="POST">
           {{ csrf_field() }}
           {{method_field('PUT')}}
           <input type="hidden" name="completeid" id="id">  
@@ -173,9 +217,7 @@
                                 </label>       
                             </div>
                             @endforeach  
-                  
                         </div>
-
                     </div>
                 </div>
                 </div>
@@ -187,6 +229,22 @@
         </div>
     </div>
 </div>
+
+
+<script>
+  $(document).ready(function() {
+  $('.deletebtn').on('click',function() {
+  $tr = $(this).closest('tr');
+  var data = $tr.children('td').map(function (){
+      return $(this).text();
+
+  }).get();
+  console.log(data);
+  $('#delid').val(data[0]);
+  $('#delname').val(data[1]);
+  });      
+});
+</script>
 <script>
     $(document).ready(function() {
       $('#reliefform').on('submit',function(e) {

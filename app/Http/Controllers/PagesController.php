@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Resident;
+use App\Donor;
+use App\Donation;
+use App\Expenditure;
+use App\Relief;
+
+
+
 
 class PagesController extends Controller
 {
@@ -32,7 +40,20 @@ class PagesController extends Controller
         return view('pages.smsSender');
     }
     public function dashboard(){
-        return view('pages.dash');
+        $res = Resident::count();
+        $donor = Donor::count();
+        $donation = Donation::count();
+        $distrel = Relief::where('relief_status','Completed')->count();
+        $exp = Expenditure::count();
+        $relief = Relief::count();
+
+        return view('pages.dash')
+        ->with('res',$res)
+        ->with('donor',$donor)
+        ->with('donation',$donation)
+        ->with('distrel',$distrel)
+        ->with('exp',$exp)
+        ->with('relief',$relief);
     }
     public function editaccount(){
         return view('pages.brgyeditacc');
@@ -45,6 +66,10 @@ class PagesController extends Controller
     }
     public function reset_password(){
         return view('pages.reset_password');
+    }
+
+    public function updateinfo(){
+        return view('pages.city-admin.updateaccount');
     }
     
 }

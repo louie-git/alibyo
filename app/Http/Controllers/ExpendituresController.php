@@ -28,7 +28,11 @@ class ExpendituresController extends Controller
     }
 
 
-
+    public function softdelete(Request $request){
+        $del = Expenditure::find($request->get('id'));
+        $del->delete();
+        return back()->with('success','Expenditure Deleted Successfully');
+    }
 
     //User
     public function expenses(){

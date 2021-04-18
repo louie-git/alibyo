@@ -34,6 +34,7 @@
                         <th>Email Address</th>
                         <th>Given Donation</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,6 +53,11 @@
                                     <i class="fas fa-user-edit"></i>
                                   </button>
                               </td>
+                              <td>
+                                <button type="button" class="btn btn-danger btn-sm deletedonor" data-toggle="modal" data-target="#deleteDonor">
+                                    Trash
+                                  </button>
+                              </td>
                           </tr>       
                     @endforeach
                 </tbody>
@@ -64,6 +70,39 @@
            Register new Donor
           </button>
     </div>
+
+
+    {{-- Delete Modal --}}
+    <div class="modal fade" id="deleteDonor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Are sure to Delete this Donor?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="{{url('/delete_donor')}}" method="POST">
+                {{ csrf_field() }}
+                {{method_field('PUT')}}
+                <div class="modal-body">
+                <input type="hidden" name="id" id="delid">
+                <label>Name/Org. Name/Comp.Name</label>
+                <input type="text"  class="form-control" id="delname"  readonly>
+                <label>Contact Number</label>
+                <input type="number" class="form-control" maxlength="11" id="delcontact" readonly>
+                <label>Email</label>
+                <input type="text" class="form-control" id="delemail" readonly>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
 
     {{-- Edit Modal --}}
     <div class="modal fade" id="editDonor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -144,7 +183,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Register Donor</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -206,19 +245,36 @@
     </script>  --}}
     <script>
         $(document).ready(function() {
-            $('.editinfo').on('click',function() {
+            $('.deletedonor').on('click',function() {
             $tr = $(this).closest('tr');
             var data = $tr.children('td').map(function (){
                 return $(this).text();
             }).get();
             console.log(data);
-            $('#id').val(data[0]);
-            $('#name').val(data[1]);
-            $('#contact').val(data[3]);
-            $('#email').val(data[4]);
+            $('#delid').val(data[0]);
+            $('#delname').val(data[1]);
+            $('#delcontact').val(data[3]);
+            $('#delemail').val(data[4]);
             });      
         });
     </script>
+
+<script>
+    $(document).ready(function() {
+        $('.editinfo').on('click',function() {
+        $tr = $(this).closest('tr');
+        var data = $tr.children('td').map(function (){
+            return $(this).text();
+        }).get();
+        console.log(data);
+        $('#id').val(data[0]);
+        $('#name').val(data[1]);
+        $('#contact').val(data[3]);
+        $('#email').val(data[4]);
+        });      
+    });
+</script>
+    
 @endsection
 
 

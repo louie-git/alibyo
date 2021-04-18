@@ -23,14 +23,22 @@ Route::put('/update_status','DistributorsController@update_status')->middleware(
 Route::put('/edit_distributor','DistributorsController@editinfo')->middleware('admin');
 Route::get('/distributor','DistributorsController@index')->middleware('admin');
 Route::post('/register_distributor','DistributorsController@register')->middleware('admin');
+Route::put('/delete_distributor','DistributorsController@softdelete')->middleware('admin');
 
 
+Route::put('/delete_donor','DonorsController@softdelete')->middleware('admin');
+Route::put('/delete_relief','ReliefsController@softdelete')->middleware('admin');
+Route::put('/delete_expenditure','ExpendituresController@softdelete')->middleware('admin');
+Route::put('/delete_exp_item','BoughtItemsController@softdelete')->middleware('admin');
 
 
-Route::get('/barangay_expenditures','ExpendituresController@city_expenditures');
-Route::get('/donation_recieved','DonorsController@donation_city');
-Route::get('/donation_recieved/{id}','DonorsController@donation_recieve');
-Route::get('/relief_information','ReliefsController@city_relief');
+// City_Admin Pages
+Route::get('/barangay_expenditures','ExpendituresController@city_expenditures')->middleware('cityadmin');
+Route::get('/donation_recieved','DonorsController@donation_city')->middleware('cityadmin');
+Route::get('/donation_recieved/{id}','DonorsController@donation_recieve')->middleware('cityadmin');
+Route::get('/relief_information','ReliefsController@city_relief')->middleware('cityadmin');
+Route::get('/update_information','PagesController@updateinfo')->middleware('cityadmin');
+Route::get('/barangay_trashed','TrashController@brgytrashed')->middleware('cityadmin');
 
 
 
@@ -55,7 +63,8 @@ Route::get('/expenses','ExpendituresController@expenses');
 Route::get('/brgyPage','DonorsController@donationsDisp')->middleware('visitor');
 Route::get('/givendonation/{id}','DonorsController@givendonation')->middleware('visitor');
 Route::get('/edit_account','PagesController@editaccount')->middleware('visitor')->name('editaccount');
-Route::get('/update_ccount','PagesController@updateaccount')->middleware('admin')->name('updateaccount');
+Route::get('/update_account','PagesController@updateaccount')->middleware('admin')->name('updateaccount');
+
 /*Route::get('/resident','PagesController@resident');*/
 // Route::get('/donations','PagesController@donation');
 // Route::get('/relief','PagesController@relief');
@@ -70,7 +79,7 @@ Route::put('/register_expenditure','ExpendituresController@store')->middleware('
 Route::get('/expenditure_item/{id}','ExpendituresController@expitem')->middleware('admin');
 Route::put('/exp_add_item','BoughtItemsController@store')->middleware('admin');
 Route::get('/reciever_list','ResidentsController@recievers')->middleware('visitor');
-
+Route::get('/trashed','TrashController@index');
 Route::put('/edit_donor_info','DonorsController@editinfo')->middleware('admin');
 
 Route::put('/donation_complete','DonationsController@completed')->middleware('admin');
@@ -110,7 +119,7 @@ Route::put('/duplicateCheck','ResidentsController@duplicateCheck');
 Route::put('/updateAll','ResidentsController@updateAllQr')->middleware('admin');
 Route::put('/purokqrupdate','ResidentsController@purokQrupdate')->middleware('admin');
 Route::put('/residentdelete','ResidentsController@softdelete')->middleware('admin');
-Route::put('/reliefdelete','ReliefsController@softdelete')->middleware('admin')->name('reliefdelete');
+Route::put('/relief_complete','ReliefsController@complete')->middleware('admin')->name('reliefdelete');
 Route::get('/distributedRelief', 'ReliefsController@completed')->middleware('admin');
 Route::get('/relief_distributed','ReliefsController@distRel')->middleware('visitor');
 Route::get('/relief_to_be_distribute','ReliefsController@relToDist')->middleware('visitor');
@@ -128,6 +137,14 @@ Route::get('/recipients','ResidentsController@recipients')->middleware('visitor'
 // Route::resource('/smsSender/send','ResidentsController@itexmo');
 
 // Route::resource('/donorInfo/{$donation}','DonationsController@show');
+
+// Retrieve Trash
+
+Route::put('/ret_res','TrashController@ret_res');
+Route::put('/ret_dist','TrashController@ret_dist');
+Route::put('/ret_donor','TrashController@ret_donor');
+
+
 
 Auth::routes();
 
