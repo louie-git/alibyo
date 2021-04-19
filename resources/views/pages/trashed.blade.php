@@ -56,7 +56,7 @@
             <div class="table-format" id="resident" style="display: block">
                 <div class="table-responsive-xl">
                     @if (count($residents)>0)
-                    <table class="table table-striped text-center">
+                    <table class="table table-striped text-center table-sm">
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">Name</th>
@@ -99,13 +99,15 @@
             <div class="table-format" id="donor" style="display: none">
                 <div class="table-responsive-xl">
                     @if (count($donors)>0)
-                    <table class="table table-striped text-center">
+                    <table class="table table-striped text-center table-sm">
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Type</th>
                             <th scope="col">Contact Number</th>
-                            <th scope="col">Delete</th>
+                            <th scope="col">Retrieve</th>
+                            <th scope="col">Donations</th>
+                            
                           </tr>
                         </thead>
                         <tbody>
@@ -121,20 +123,20 @@
                                         Retrieve
                                     </button>
                                 </td>
+                            
                                 <td>
-                                    <td>
-                                        @foreach ($donor->mydonor as $item)
-                                            <ul>
-                                                @if ($item->donation_type == 'CASH')
-                                                <li>{{$item->donation_amount}}  Pesos</li>
-                                                @else
-                                                <li>{{$item->donation_quantity}}&nbsp;{{$item->donation_unit}}&nbsp;{{$item->donation_description}}</li>
-                                                @endif
-                                            </ul>
-                                        @endforeach
-                                       
-                                    </td>
+                                    @foreach ($donor->mydonor as $item)
+                                        <ul>
+                                            @if ($item->donation_type == 'CASH')
+                                            <li>{{$item->donation_amount}}  Pesos</li>
+                                            @else
+                                            <li>{{$item->donation_quantity}}&nbsp;{{$item->donation_unit}}&nbsp;{{$item->donation_description}}</li>
+                                            @endif
+                                        </ul>
+                                    @endforeach
+                                    
                                 </td>
+                                
                             </tr>
                             @endforeach
                         </tbody>
@@ -149,7 +151,7 @@
             <div class="table-format" id="donation" style="display: none">
                 <div class="table-responsive-xl">
                     @if (count($donations)>0)
-                    <table class="table table-striped text-center">
+                    <table class="table table-striped text-center table-sm">
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">Quantity</th>
@@ -188,7 +190,7 @@
             <div class="table-format" id="relief" style="display: none">
                 <div class="table-responsive-xl">
                     @if (count($reliefs)>0)
-                    <table class="table table-striped text-center">
+                    <table class="table table-striped text-center table-sm">
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">Name</th>
@@ -223,7 +225,7 @@
             <div class="table-format" id="expenditure" style="display: none">
                 <div class="table-responsive-xl">
                     @if (count($exps)>0)
-                    <table class="table table-striped text-center">
+                    <table class="table table-striped text-center table-sm">
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">Amount Used</th>
@@ -264,7 +266,7 @@
             <div class="table-format" id="exp_item" style="display: none">
                 <div class="table-responsive-xl">
                     @if (count($exp_items)>0)
-                    <table class="table table-striped text-center">
+                    <table class="table table-striped text-center table-sm">
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">Quantity</th>
@@ -299,7 +301,7 @@
             <div class="table-format" id="distributor" style="display: none">
                 <div class="table-responsive-xl">
                     @if (count($distributors)>0)
-                        <table class="table table-striped text-center table-sm">
+                        <table class="table table-striped text-center table-sm table-sm">
                             <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Name</th>

@@ -288,8 +288,8 @@ class ResidentsController extends Controller
 
 
     public function records(){
-        $result  = Resident::with('relief')->get();
-        return $result;
+        $records  = Resident::with('relief')->get();
+        return view('pages.record')->with('records',$records);
     }
 
 }

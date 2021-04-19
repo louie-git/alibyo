@@ -80,6 +80,7 @@
                 <li><a class="dropdown-item" href="/distributedRelief"><i class="fas fa-user-check"></i>Distributed Relief</a></li>
                 <li><a class="dropdown-item" href="/distributor"><i class="far fa-handshake"></i>Distributor</a></li>
                 <li><a class="dropdown-item" href="/trashed"><i class="far fa-trash-alt"></i>Trashed</a></li>
+                <li><a class="dropdown-item" href="/recieved_list"><i class="far fa-laugh-beam"></i>Past Recievers</a></li>
                 
             </ul>
             
