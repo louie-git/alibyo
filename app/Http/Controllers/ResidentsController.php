@@ -285,4 +285,11 @@ class ResidentsController extends Controller
         $recievers = Resident::where('res_qrcode_status','Enabled')->orderBy('res_purok','ASC')->paginate(10);
         return view('pages.brgyrecieverlist')->with('recievers',$recievers);
     }
+
+
+    public function records(){
+        $result  = Resident::with('relief')->get();
+        return $result;
+    }
+
 }

@@ -280,6 +280,7 @@
                                 <th>{{$exp_item->item_quantity}}</th>
                                 <td>{{$exp_item->item_unit}}</td>
                                 <td>{{$exp_item->item_name}}</td>
+                                <td>{{$exp_item->exp_id}}</td>
                               
                             </tr>
                             @endforeach

@@ -11,4 +11,9 @@ class Resident extends Model
     protected $table = 'residents';
     public $primaryKey = 'res_id';
     //
+
+    public function relief(){
+        return $this->belongsToMany(Relief::class,'resident_relief','res_id','relief_id');
+    }
+
 }

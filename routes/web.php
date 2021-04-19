@@ -41,6 +41,8 @@ Route::get('/update_information','PagesController@updateinfo')->middleware('city
 Route::get('/barangay_trashed','TrashController@brgytrashed')->middleware('cityadmin');
 
 
+Route::get('/recieved_list','ResidentsController@records');
+
 
 Route::get('/super_admin','UsersController@admin_account')->middleware('superadmin');
 Route::put('/update_admin_account','UsersController@update_account')->middleware('superadmin');
